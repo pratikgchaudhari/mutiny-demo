@@ -1,8 +1,12 @@
 package mutiny.demo;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import io.smallrye.mutiny.Uni;
 
 public class App {
+
+    AtomicInteger counter = new AtomicInteger();
+
     public Uni<String> helloMutiny() {
         return Uni
                 .createFrom()
@@ -18,5 +22,9 @@ public class App {
 
     public Uni<Void> emptyUni() {
         return Uni.createFrom().nullItem();
+    }
+
+    public Uni<Integer> counter() {
+        return Uni.createFrom().item(() -> counter.getAndIncrement());
     }
 }

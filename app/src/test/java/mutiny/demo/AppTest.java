@@ -2,6 +2,7 @@ package mutiny.demo;
 
 import org.junit.jupiter.api.Test;
 import io.smallrye.mutiny.helpers.test.UniAssertSubscriber;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.BeforeEach;
 
 class AppTest {
@@ -37,6 +38,24 @@ class AppTest {
                 .subscribe()
                 .withSubscriber(UniAssertSubscriber.create())
                 .assertItem(null)
+                .assertCompleted();
+    }
+
+    @Test
+    void shouldReturnAContinouslyIncrementingCounter() {
+
+        AtomicInteger counter = new AtomicInteger();
+
+        app.counter()
+                .subscribe()
+                .withSubscriber(UniAssertSubscriber.create())
+                .assertItem(counter.getAndIncrement())
+                .assertCompleted();
+
+        app.counter()
+                .subscribe()
+                .withSubscriber(UniAssertSubscriber.create())
+                .assertItem(counter.getAndIncrement())
                 .assertCompleted();
     }
 }
