@@ -1,6 +1,8 @@
 package mutiny.demo;
 
 import org.junit.jupiter.api.Test;
+
+import io.smallrye.mutiny.helpers.test.AssertSubscriber;
 import io.smallrye.mutiny.helpers.test.UniAssertSubscriber;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.BeforeEach;
@@ -57,5 +59,16 @@ class AppTest {
                 .withSubscriber(UniAssertSubscriber.create())
                 .assertItem(counter.getAndIncrement())
                 .assertCompleted();
+    }
+
+    @Test
+    void shouldReturnIntegersFromOneToFive() {
+
+        app.intergerFromOneToFive()
+                .subscribe()
+                .withSubscriber(AssertSubscriber.create(5))
+                .assertItems(1, 2, 3, 4, 5)
+                .assertCompleted();
+
     }
 }

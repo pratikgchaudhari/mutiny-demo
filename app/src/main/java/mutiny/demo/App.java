@@ -1,6 +1,7 @@
 package mutiny.demo;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 
 public class App {
@@ -26,5 +27,9 @@ public class App {
 
     public Uni<Integer> counter() {
         return Uni.createFrom().item(() -> counter.getAndIncrement());
+    }
+
+    public Multi<Integer> intergerFromOneToFive() {
+        return Multi.createFrom().items(1, 2, 3, 4, 5);
     }
 }
