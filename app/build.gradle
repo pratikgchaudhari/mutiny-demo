@@ -25,6 +25,8 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
+
+    implementation 'io.smallrye.reactive:mutiny:1.4.0'
 }
 
 application {
@@ -35,4 +37,8 @@ application {
 tasks.named('test') {
     // Use junit platform for unit tests.
     useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
