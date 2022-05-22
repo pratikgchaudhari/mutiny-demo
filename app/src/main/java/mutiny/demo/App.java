@@ -20,7 +20,7 @@ public class App {
                 .failure(new AppException("Oops! Looks like we messed up something."));
     }
 
-    public Uni<Void> emptyUni() {
+    public Uni<Void> nullItem() {
         return Uni.createFrom().nullItem();
     }
 

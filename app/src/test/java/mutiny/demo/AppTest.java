@@ -33,8 +33,8 @@ class AppTest {
     }
 
     @Test
-    void shouldReturnAnEmptyUni() {
-        app.emptyUni()
+    void shouldReturnANullItem() {
+        app.nullItem()
                 .subscribe()
                 .withSubscriber(UniAssertSubscriber.create())
                 .assertItem(null)
