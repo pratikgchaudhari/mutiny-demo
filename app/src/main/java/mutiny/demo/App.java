@@ -10,4 +10,9 @@ public class App {
                 .onItem().transform(item -> item + " mutiny!")
                 .onItem().transform(String::toUpperCase);
     }
+
+    public Uni<String> failedUni() {
+        return Uni.createFrom()
+                .failure(new AppException("Oops! Looks like we messed up something."));
+    }
 }

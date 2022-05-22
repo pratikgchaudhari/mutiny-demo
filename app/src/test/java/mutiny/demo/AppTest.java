@@ -22,4 +22,12 @@ class AppTest {
                 .assertCompleted()
                 .assertItem("HELLO MUTINY!");
     }
+
+    @Test
+    void shouldFailWithAppException() {
+        app.failedUni()
+                .subscribe()
+                .withSubscriber(UniAssertSubscriber.create())
+                .assertFailedWith(AppException.class, "Oops! Looks like we messed up something.");
+    }
 }
