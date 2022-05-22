@@ -30,4 +30,13 @@ class AppTest {
                 .withSubscriber(UniAssertSubscriber.create())
                 .assertFailedWith(AppException.class, "Oops! Looks like we messed up something.");
     }
+
+    @Test
+    void shouldReturnAnEmptyUni() {
+        app.emptyUni()
+                .subscribe()
+                .withSubscriber(UniAssertSubscriber.create())
+                .assertItem(null)
+                .assertCompleted();
+    }
 }

@@ -15,4 +15,8 @@ public class App {
         return Uni.createFrom()
                 .failure(new AppException("Oops! Looks like we messed up something."));
     }
+
+    public Uni<Void> emptyUni() {
+        return Uni.createFrom().nullItem();
+    }
 }
